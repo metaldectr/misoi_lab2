@@ -1,9 +1,10 @@
 package com.romario.misoilab2.gui;
 
-import com.romario.misoilab1.form.Form;
+import com.romario.misoilab2.form.Form;
+
+import java.awt.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Created by romario on 9/20/14.
@@ -15,7 +16,6 @@ public final class MyFrame extends JFrame {
 
 	private MyControlPanel controlPanel;
 	private MyViewPanel viewPanel;
-	private PreparationPanel preparationPanel;
 
 	private Container contentPane = null;
 
@@ -72,11 +72,4 @@ public final class MyFrame extends JFrame {
 		this.contentPane = contentPane;
 	}
 
-	public PreparationPanel getPreparationPanel() {
-		return preparationPanel;
-	}
-
-	public void setPreparationPanel(PreparationPanel preparationPanel) {
-		this.preparationPanel = preparationPanel;
-	}
 }
