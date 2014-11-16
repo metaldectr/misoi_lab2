@@ -24,9 +24,9 @@ public final class MyControlPanel extends JPanel {
 
   private final JButton openFileButton = new JButton("Choose File");
   private final JButton convertImageButton = new JButton("Convert Image");
-	private final JButton removeNoiseButton = new JButton("Remove noise");
-	private final JButton defineAreasButton = new JButton("Define areas");
-	private final JButton clusteringButton = new JButton("Clustering");
+  private final JButton removeNoiseButton = new JButton("Remove noise");
+  private final JButton defineAreasButton = new JButton("Define areas");
+  private final JButton clusteringButton = new JButton("Clustering");
 
   private final JFileChooser fileChooser = new JFileChooser(new File(this.getClass()
       .getClassLoader().getResource("").getPath()));
@@ -87,66 +87,63 @@ public final class MyControlPanel extends JPanel {
     convertImageButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-	      BufferedImage image = frame.getForm().getSourceBufferedImage();
-				frame.getForm().setResultBufferedImage(BinaryFilter.bynaryImage(image));
-	      frame.getViewPanel().repaint();
+        BufferedImage image = frame.getForm().getSourceBufferedImage();
+        frame.getForm().setResultBufferedImage(BinaryFilter.bynaryImage(image));
+        frame.getViewPanel().repaint();
       }
     });
 
-	  removeNoiseButton.addActionListener(new ActionListener() {
-		  @Override
-		  public void actionPerformed(ActionEvent e) {
+    removeNoiseButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
 
-		  }
-	  });
+      }
+    });
 
-	  defineAreasButton.addActionListener(new ActionListener() {
-		  @Override
-		  public void actionPerformed(ActionEvent e) {
-			  Area area = new Area();
-			  int [][] result = area.labeling(frame.getForm().getResultBufferedImage());
-			  viewArray(result, frame.getForm().getResultBufferedImage().getWidth(),
-					  frame.getForm().getResultBufferedImage().getHeight());
-		  }
-	  });
+    defineAreasButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        Area area = new Area();
+        int[][] result = area.labeling(frame.getForm().getResultBufferedImage());
+        viewArray(result, frame.getForm().getResultBufferedImage().getWidth(), frame.getForm()
+            .getResultBufferedImage().getHeight());
+      }
+    });
 
-	  clusteringButton.addActionListener(new ActionListener() {
-		  @Override
-		  public void actionPerformed(ActionEvent e) {
+    clusteringButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
 
-		  }
-	  });
+      }
+    });
 
   }
 
-	/*private int[][] viewImage(BufferedImage image) {
-		int[][] tp = new int[651][400];
+  /*
+   * private int[][] viewImage(BufferedImage image) { int[][] tp = new int[651][400];
+   * 
+   * for(int i = 0; i < image.getWidth(); i++) { for(int j = 0; j < image.getHeight(); j++) {
+   * tp[i][j] = image.getRGB(i, j) & 0XFF; } }
+   * 
+   * return tp; }
+   */
 
-		for(int i = 0; i < image.getWidth(); i++) {
-			for(int j = 0; j < image.getHeight(); j++) {
-				tp[i][j] = image.getRGB(i, j) & 0XFF;
-			}
-		}
-
-		return tp;
-	}*/
-
-	private void viewArray(int[][] array, int xLength, int yLength) {
-		for (int i = 0; i < xLength; i++) {
-			for (int j = 0; j < yLength; j++) {
-				System.out.print(array[i][j]);
-			}
-			System.out.println();
-		}
-	}
+  private void viewArray(int[][] array, int xLength, int yLength) {
+    for (int i = 0; i < xLength; i++) {
+      for (int j = 0; j < yLength; j++) {
+        System.out.print(array[i][j]);
+      }
+      System.out.println();
+    }
+  }
 
   private void initializeGUI() {
 
     add(openFileButton, new GBC(0, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
     add(convertImageButton, new GBC(1, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
-	  add(removeNoiseButton, new GBC(2, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
-	  add(defineAreasButton, new GBC(3, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
-	  add(clusteringButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+    add(removeNoiseButton, new GBC(2, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+    add(defineAreasButton, new GBC(3, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+    add(clusteringButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
 
   }
 

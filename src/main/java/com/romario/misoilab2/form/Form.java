@@ -8,46 +8,46 @@ import java.io.Serializable;
  */
 public class Form implements Serializable {
 
-	private BufferedImage sourceBufferedImage;
-	private BufferedImage resultBufferedImage;
+  private BufferedImage sourceBufferedImage;
+  private BufferedImage resultBufferedImage;
 
-	private int[][] areas;
+  private int[][] areas;
 
-	private static Form instance;
+  private static Form instance;
 
-	private Form() {
+  private Form() {
 
-	}
+  }
 
-	public static Form getInstance() {
-		if (instance == null) {
-			instance = new Form();
-		}
-		return instance;
-	}
+  public static Form getInstance() {
+    if (instance == null) {
+      instance = new Form();
+    }
+    return instance;
+  }
 
-	public BufferedImage getSourceBufferedImage() {
-		return sourceBufferedImage;
-	}
+  public BufferedImage getSourceBufferedImage() {
+    return sourceBufferedImage;
+  }
 
-	public void setSourceBufferedImage(BufferedImage sourceBufferedImage) {
-		this.sourceBufferedImage = sourceBufferedImage;
-		areas = new int[sourceBufferedImage.getWidth()][sourceBufferedImage.getHeight()];
-	}
+  public void setSourceBufferedImage(BufferedImage sourceBufferedImage) {
+    this.sourceBufferedImage = sourceBufferedImage;
+    areas = new int[sourceBufferedImage.getWidth()][sourceBufferedImage.getHeight()];
+  }
 
-	public BufferedImage getResultBufferedImage() {
-		return resultBufferedImage;
-	}
+  public BufferedImage getResultBufferedImage() {
+    return resultBufferedImage;
+  }
 
-	public void setResultBufferedImage(BufferedImage resultBufferedImage) {
-		this.resultBufferedImage = resultBufferedImage;
-	}
+  public void setResultBufferedImage(BufferedImage resultBufferedImage) {
+    this.resultBufferedImage = resultBufferedImage;
+  }
 
-	public int[][] getAreas() {
-		return areas;
-	}
+  public int[][] getAreas() {
+    return areas;
+  }
 
-	public void setAreas(int[][] areas) {
-		this.areas = areas;
-	}
+  public void setAreas(int[][] areas) {
+    this.areas = areas;
+  }
 }
