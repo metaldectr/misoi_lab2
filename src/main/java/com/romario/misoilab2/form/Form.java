@@ -8,18 +8,10 @@ import java.io.Serializable;
  */
 public class Form implements Serializable {
 
-	private static final int MIN_VALUE_PIXEL = 0;
-	private static final int MAX_VALUE_PIXEL = 255;
-
 	private BufferedImage sourceBufferedImage;
 	private BufferedImage resultBufferedImage;
 
-	private int gMin = MIN_VALUE_PIXEL;
-	private int gMax = MAX_VALUE_PIXEL;
-	private int fMin = MIN_VALUE_PIXEL;
-	private int fMax = MAX_VALUE_PIXEL;
-
-	private String nameMethod;
+	private int[][] areas;
 
 	private static Form instance;
 
@@ -40,6 +32,7 @@ public class Form implements Serializable {
 
 	public void setSourceBufferedImage(BufferedImage sourceBufferedImage) {
 		this.sourceBufferedImage = sourceBufferedImage;
+		areas = new int[sourceBufferedImage.getWidth()][sourceBufferedImage.getHeight()];
 	}
 
 	public BufferedImage getResultBufferedImage() {
@@ -50,43 +43,11 @@ public class Form implements Serializable {
 		this.resultBufferedImage = resultBufferedImage;
 	}
 
-	public int getgMin() {
-		return gMin;
+	public int[][] getAreas() {
+		return areas;
 	}
 
-	public void setgMin(int gMin) {
-		this.gMin = gMin;
-	}
-
-	public int getgMax() {
-		return gMax;
-	}
-
-	public void setgMax(int gMax) {
-		this.gMax = gMax;
-	}
-
-	public int getfMin() {
-		return fMin;
-	}
-
-	public void setfMin(int fMin) {
-		this.fMin = fMin;
-	}
-
-	public int getfMax() {
-		return fMax;
-	}
-
-	public void setfMax(int fMax) {
-		this.fMax = fMax;
-	}
-
-	public String getNameMethod() {
-		return nameMethod;
-	}
-
-	public void setNameMethod(String nameMethod) {
-		this.nameMethod = nameMethod;
+	public void setAreas(int[][] areas) {
+		this.areas = areas;
 	}
 }
