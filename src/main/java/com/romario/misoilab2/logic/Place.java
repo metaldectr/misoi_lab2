@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by romario on 11/16/14.
  */
-public class Area {
+public class Place {
 
   private boolean flag = false;
 

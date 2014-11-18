@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.*;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +15,8 @@ import javax.swing.filechooser.FileFilter;
 
 import com.romario.misoilab2.filter.BinaryFilter;
 import com.romario.misoilab2.gui.gbc.GBC;
-import com.romario.misoilab2.logic.Area;
+import com.romario.misoilab2.logic.Place;
+import com.romario.misoilab2.logic.Sign;
 
 /**
  * Created by romario on 9/20/14.
@@ -26,6 +29,7 @@ public final class MyControlPanel extends JPanel {
   private final JButton convertImageButton = new JButton("Convert Image");
   private final JButton removeNoiseButton = new JButton("Remove noise");
   private final JButton defineAreasButton = new JButton("Define areas");
+	private final JButton defineSignsButton = new JButton("Define signs");
   private final JButton clusteringButton = new JButton("Clustering");
 
   private final JFileChooser fileChooser = new JFileChooser(new File(this.getClass()
@@ -96,17 +100,35 @@ public final class MyControlPanel extends JPanel {
     removeNoiseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-
+				removeNoise
       }
     });
 
     defineAreasButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        Area area = new Area();
-        int[][] result = area.labeling(frame.getForm().getResultBufferedImage());
-        viewArray(result, frame.getForm().getResultBufferedImage().getWidth(), frame.getForm()
-            .getResultBufferedImage().getHeight());
+        Place place = new Place();
+        int[][] result = place.labeling(frame.getForm().getResultBufferedImage());
+	      frame.getForm().setAreas(result);
+	      System.out.println("end define areasButton");
+      }
+    });
+
+    defineSignsButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+        int[][] results = frame.getForm().getAreas();
+        int w = frame.getForm().getResultBufferedImage().getWidth();
+        int h = frame.getForm().getResultBufferedImage().getHeight();
+        viewArray(results, w, h);
+        Sign sign = new Sign();
+        frame.getForm().setAreasMap(sign.convertArrayToMapAreas(results, w, h));
+        frame.getForm().setAreasIndexesMap(sign.defineAreasToMap(results, w, h));
+        Map<Integer, List<Point>> areasIndexesMap = frame.getForm().getAreasIndexesMap();
+        frame.getForm().setCenterOfMass(sign.calculateCenterOfMass(areasIndexesMap));
+        frame.getForm().setPerimeterMap(sign.calculatePerimeter(areasIndexesMap, results, w, h));
+	      frame.getForm().setDensityMap(areasIndexesMap, frame.getForm().setPerimeterMap(););
       }
     });
 
@@ -143,7 +165,8 @@ public final class MyControlPanel extends JPanel {
     add(convertImageButton, new GBC(1, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
     add(removeNoiseButton, new GBC(2, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
     add(defineAreasButton, new GBC(3, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
-    add(clusteringButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+	  add(defineSignsButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+    add(clusteringButton, new GBC(5, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
 
   }
 
