@@ -1,5 +1,7 @@
 package com.romario.misoilab2.form;
 
+import com.romario.misoilab2.cluster.Cluster;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.Serializable;
@@ -23,6 +25,9 @@ public class Form implements Serializable {
 	private Map<Integer, Point> centerOfMass = new HashMap<>();
 	private Map<Integer, Integer> perimeterMap = new HashMap<>();
 	private Map<Integer, Integer> densityMap = new HashMap<>();
+	private Map<Integer, Integer> elongationMap = new HashMap<>();
+
+	private List<Cluster> clusters = new ArrayList<>();
 
   private static Form instance;
 
@@ -100,5 +105,21 @@ public class Form implements Serializable {
 
 	public void setDensityMap(Map<Integer, Integer> densityMap) {
 		this.densityMap = densityMap;
+	}
+
+	public List<Cluster> getClusters() {
+		return clusters;
+	}
+
+	public void setClusters(List<Cluster> clusters) {
+		this.clusters = clusters;
+	}
+
+	public Map<Integer, Integer> getElongationMap() {
+		return elongationMap;
+	}
+
+	public void setElongationMap(Map<Integer, Integer> elongationMap) {
+		this.elongationMap = elongationMap;
 	}
 }

@@ -1,6 +1,10 @@
 package com.romario.misoilab2.filter;
 
+import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by romario on 11/14/14.
@@ -31,10 +35,32 @@ public class BinaryFilter {
     return image;
   }
 
-  private static int colorValue(int val) {
+  public static int colorValue(int val) {
 
     return ((val << FilterConstant.ALPHA_VALUE) | (val << FilterConstant.RED_VALUE))
         | ((val << FilterConstant.GREEN_VALUE)) | (val);
   }
+
+	private static BufferedImage cleanImage(BufferedImage image, List<Point> indexesMap) {
+
+		int blackPixel = colorValue(FilterConstant.BLACK_VALUE);
+		for (Point point : indexesMap) {
+			image.setRGB((int)point.getX(), (int)point.getY(), blackPixel);
+		}
+		return image;
+	}
+
+	public static Map<Integer, List<Point>> simpleFilter(BufferedImage image, Map<Integer, List<Point>> areasIndexesMap) {
+		Map<Integer, List<Point>> tmpMap = new HashMap<>();
+		for (Integer indexMap : areasIndexesMap.keySet()) {
+			if (areasIndexesMap.get(indexMap).size() > FilterConstant.SIMPLE_FILTER_VALUE) {
+				tmpMap.put(indexMap, areasIndexesMap.get(indexMap));
+			} else {
+				cleanImage(image, areasIndexesMap.get(indexMap));
+			}
+		}
+
+		return tmpMap;
+	}
 
 }

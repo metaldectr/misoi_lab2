@@ -114,9 +114,9 @@ public class Sign {
     return false;
   }
 
-	public Map<Integer, Integer> calculateElongation() {
+	/*public Map<Integer, Integer> calculateElongation() {
 
-	}
+	}*/
 
   public Map<Integer, Integer> calculateDensity(Map<Integer, List<Point>> areasIndexesMap, Map<Integer, Integer> perimeterMap) {
 		Map<Integer, Integer> densityMap = new HashMap<>();

@@ -14,4 +14,8 @@ public interface FilterConstant {
 
   public static final int AVERAGE_COLOR_VALUE = 125;
 
+	public static final int SIMPLE_FILTER_VALUE = 30;
+
+	public static final int COUNT_CLASSES = 2;
+
 }
