@@ -41,6 +41,11 @@ public class BinaryFilter {
         | ((val << FilterConstant.GREEN_VALUE)) | (val);
   }
 
+	public static int colorRGBValue(int r, int g, int b) {
+		return ((b << FilterConstant.ALPHA_VALUE) | (r << FilterConstant.RED_VALUE))
+				| ((g << FilterConstant.GREEN_VALUE)) | (b);
+	}
+
 	private static BufferedImage cleanImage(BufferedImage image, List<Point> indexesMap) {
 
 		int blackPixel = colorValue(FilterConstant.BLACK_VALUE);

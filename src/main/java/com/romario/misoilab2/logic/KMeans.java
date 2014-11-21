@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class KMeans {
 
-	public void clustering(List<Cluster> clusters) {
+	public List<Cluster> clustering(List<Cluster> clusters) {
 
 		List<Cluster> oldCenters = new ArrayList<>();
 
@@ -97,7 +97,7 @@ public class KMeans {
 
 		}
 
-
+		return clusters;
 	}
 
 	private int findIndex(List<Cluster> clusters, int xIndex) {

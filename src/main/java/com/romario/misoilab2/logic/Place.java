@@ -26,13 +26,15 @@ public class Place {
           l++;
           flag = false;
         }
-        fillArea(imageArray, labels, i, j, l, width, height);
+					fillArea(imageArray, labels, i, j, l, width, height);
+
       }
     }
     return labels;
   }
 
   private void fillArea(int[][] imageArray, int[][] labels, int x, int y, final int l, int w, int h) {
+
     if (labels[x][y] == 0 && imageArray[x][y] == 1) {
       labels[x][y] = l;
       this.flag = true;

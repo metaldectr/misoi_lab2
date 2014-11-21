@@ -17,10 +17,7 @@ import com.romario.misoilab2.cluster.Cluster;
 import com.romario.misoilab2.filter.BinaryFilter;
 import com.romario.misoilab2.form.Form;
 import com.romario.misoilab2.gui.gbc.GBC;
-import com.romario.misoilab2.logic.Converter;
-import com.romario.misoilab2.logic.KMeans;
-import com.romario.misoilab2.logic.Place;
-import com.romario.misoilab2.logic.Sign;
+import com.romario.misoilab2.logic.*;
 
 /**
  * Created by romario on 9/20/14.
@@ -105,10 +102,7 @@ public final class MyControlPanel extends JPanel {
     removeNoiseButton.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-	      frame.getForm().setAreasIndexesMap(
-			      BinaryFilter.simpleFilter(frame.getForm().getResultBufferedImage(),
-					      frame.getForm().getAreasIndexesMap()));
-	      frame.getViewPanel().repaint();
+
 	      System.out.println("end remove noise");
       }
     });
@@ -158,10 +152,15 @@ public final class MyControlPanel extends JPanel {
       @Override
       public void actionPerformed(ActionEvent e) {
 	      KMeans kMeans = new KMeans();
-	      kMeans.clustering(frame.getForm().getClusters());
-				//repaint and coloring image
-	      frame.getViewPanel().repaint();
-	      System.out.println("end clustering");
+        frame.getForm().setClusters(kMeans.clustering(frame.getForm().getClusters()));
+        Common common = new Common();
+        frame.getForm().setResultBufferedImage(
+            common.markClusters(frame.getForm().getResultBufferedImage(), frame.getForm()
+                .getClusters()));
+
+        // repaint and coloring image
+        frame.getViewPanel().repaint();
+        System.out.println("end clustering");
       }
     });
 
@@ -191,7 +190,7 @@ public final class MyControlPanel extends JPanel {
     add(convertImageButton, new GBC(1, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
     add(defineAreasButton, new GBC(2, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
 	  add(defineSignsButton, new GBC(3, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
-	  add(removeNoiseButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
+	  //add(removeNoiseButton, new GBC(4, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
     add(clusteringButton, new GBC(5, 0).setInsets(CELL_INSETS).setAnchor(GridBagConstraints.WEST));
 
   }
